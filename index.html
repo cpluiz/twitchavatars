@@ -16,13 +16,30 @@
                 font-size: 3rem;
                 font-weight: bold;
             }
+            .avatar-col{
+                max-height: 156px;
+            }
+            .avatar-container{
+                transition: all 0.3s ease-in;
+                width: fit-content;
+                margin: 0 auto;
+                -webkit-box-shadow: 5px 5px 15px 5px #e0e0e011;
+                box-shadow: 5px 5px 15px 5px #e0e0e011;
+                cursor: help;
+            }
+            .avatar-container:hover{
+                border: 1px solid white;
+                padding: 0.3rem 2rem;
+                -webkit-box-shadow: 5px 5px 15px 5px #e0e0e044;
+                box-shadow: 5px 5px 15px 5px #e0e0e044;
+            }
             .command{
                 font-family: 'Mouse Memoirs', sans-serif;
                 display: block;
-                width: 100%;
-                text-align: center;
+                width: fit-content;
                 letter-spacing: 1px;
                 font-size: 1.2rem;
+                margin: 0 auto;
             }
             .img-container{
                 width: 128px;
@@ -50,13 +67,14 @@
                     <div class="col-12 col-md-8">
                         <p class="text-center">Os comandos de interação são os seguintes:</p>
                         <ol>
+                            <li><strong>Balão de fala</strong> - parar exibir na tela um balão de fala com a sua mensagem, resgate a opção "<i>destacar minha mensagem</i>" na Twitch.</li>
                             <li><strong>!jump</strong> - Faz o seu personagem pular na tela</li>
                             <li><strong>!moitinha</strong> - Esconde seu personagem da tela até sua próxima interação no chat</li>
                             <li><strong>!setavatar <i>x</i></strong> - Altera a aparência do seu avatar. Substitua o <i>x</i> pelo número do avatar de sua escolha, com base na lista abaixo:</li>
                         </ol>
                     </div>
                 </div>
-                <div class="row" id="avatars">
+                <div class="row pb-5" id="avatars">
 
                 </div>
                 <footer></footer>
@@ -67,15 +85,18 @@
                 let avatarGallery = document.getElementById("avatars");
                 for(let i = 1; i<=24; i++){
                     let column = document.createElement("div");
-                    column.setAttribute("class", "col-12 col-md-4 col-xl-3");
+                    column.setAttribute("class", "avatar-col col-12 col-md-4 col-xl-3 mt-3 mb-3");
+                    let avatarContainer = document.createElement("div");
+                    avatarContainer.setAttribute("class", "avatar-container");
                     let avatarCommand = document.createElement("span");
                     avatarCommand.setAttribute("class", "command");
                     avatarCommand.textContent = "!setavatar "+i;
-                    column.appendChild(avatarCommand);
+                    avatarContainer.appendChild(avatarCommand);
                     let imgContainer = document.createElement("span");
                     imgContainer.setAttribute("class", "img-container");
                     imgContainer.setAttribute("style", "--bg: url(images/char_"+i+".png)");
-                    column.appendChild(imgContainer);
+                    avatarContainer.appendChild(imgContainer);
+                    column.appendChild(avatarContainer);
                     avatarGallery.appendChild(column);
                 }
             })
