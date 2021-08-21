@@ -44,15 +44,24 @@
             .img-container{
                 width: 128px;
                 height: 128px;
-                background-image: var(--bg);
+                background-image: var(--idle);
                 background-color: transparent;
                 background-repeat: no-repeat;
                 display: block;
                 margin: 0 auto;
                 animation: charIdle .5s infinite steps(3);
+                background-position-y: 0;
+            }
+            .avatar-container:hover .img-container{
+                background-image: var(--walking);
+                animation: charWalking 1s infinite steps(8);
+                background-position-y: -256px;
             }
             @keyframes charIdle{
-                100% { background-position: -384px 0; }
+                100% { background-position-x: -384px; }
+            }
+            @keyframes charWalking {
+                100%{ background-position-x: -1024px; }
             }
         </style>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,7 +103,7 @@
                     avatarContainer.appendChild(avatarCommand);
                     let imgContainer = document.createElement("span");
                     imgContainer.setAttribute("class", "img-container");
-                    imgContainer.setAttribute("style", "--bg: url(images/char_"+i+".png)");
+                    imgContainer.setAttribute("style", "--idle: url(images/idle/char_"+i+".png); --walking: url(images/walking/char_"+i+".png)");
                     avatarContainer.appendChild(imgContainer);
                     column.appendChild(avatarContainer);
                     avatarGallery.appendChild(column);
